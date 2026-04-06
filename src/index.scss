@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// Base styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: #131313;
+  color: #ffffff;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* 👇 Tumhara custom navbar CSS */
+.nav-menu {
+  --gap: 1rem;
+  display: flex;
+  gap: var(--gap);
+}
+
+.nav-link {
+  position: relative;
+  font-size: clamp(0.8rem, 0.7vw + 0.1rem, 1rem);
+  color: rgb(180 180 180);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.nav-link+.nav-link::before {
+  content: "·";
+  margin-right: var(--gap);
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.nav-link.cta {
+  color: rgb(255, 255, 255);
+  text-shadow:
+    0 0 10px rgba(255, 255, 255, 0.8),
+    0 0 20px rgba(255, 255, 255, 0.6),
+    0 0 30px rgba(255, 255, 255, 0.4);
+}
+
+.nav-link:hover {
+  color: white;
+  text-shadow:
+    0 10px rgba(255, 255, 255, 0.25),
+    0 -10px rgba(255, 255, 255, 0.25),
+    0 20px rgba(255, 255, 255, 0.15),
+    0 -20px rgba(255, 255, 255, 0.15);
+}
+
+// Custom scrollbar
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333333;
+  border-radius: 4px;
+
+  &:hover {
+    background: #555555;
+  }
+}
+
+// Glass morphism effect
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+// Smooth transitions
+.transition-all {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+// Custom animations
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Technical Elegance - Projects Section */
+.glass-card-stitch {
+  background: rgba(28, 27, 27, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+.ghost-border-stitch {
+  border: 1px solid rgba(71, 71, 71, 0.15);
+}
+.text-gradient-stitch {
+  background: linear-gradient(180deg, #FFFFFF 0%, #D4D4D4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.ambient-glow-stitch {
+  box-shadow: 0 0 40px rgba(198, 198, 199, 0.04);
+}
+.grid-line-v {
+  width: 1px;
+  background: rgba(71, 71, 71, 0.3);
+}
+.grid-line-h {
+  height: 1px;
+  background: rgba(71, 71, 71, 0.3);
+}
