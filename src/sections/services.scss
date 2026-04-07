@@ -102,12 +102,13 @@
   text-align: center;
 }
 
-// ── Scroll-driven services: shorter steps (not 6 full screens — less dead height)
+// ── Scroll-driven services: no vertical scroll needed
 .services-scroll-pin {
   --service-step: min(72vh, 600px);
   position: relative;
   height: auto;
   min-height: auto;
+  overflow: hidden;
 }
 
 .services-scroll-sticky {
@@ -116,8 +117,13 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-block: 2rem;
+  padding-block: 3rem 2rem;
   box-sizing: border-box;
+  overflow: hidden;
+
+  @media (max-width: 768px) {
+    padding-block: 2rem 1.5rem;
+  }
 }
 
 // ── Services layout ──────────────────────────────────────────────────
@@ -129,11 +135,16 @@
   min-height: auto;
   margin-top: 0.5rem;
   width: 100%;
+  overflow: hidden;
 
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
     min-height: auto;
-    gap: 2rem;
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 640px) {
+    gap: 1rem;
   }
 }
 
@@ -143,7 +154,7 @@
   height: 460px;
   min-height: 380px;
   position: relative;
-  overflow: visible;
+  overflow: hidden;
 
   canvas {
     display: block;
@@ -154,6 +165,11 @@
   @media (max-width: 900px) {
     height: 300px;
     min-height: 260px;
+  }
+
+  @media (max-width: 640px) {
+    height: 220px;
+    min-height: 200px;
   }
 }
 
@@ -171,13 +187,14 @@
   gap: 0.65rem;
   position: relative;
   min-height: auto;
+  overflow: hidden;
 
   @media (min-width: 900px) {
     flex-direction: row;
     align-items: stretch;
     gap: 0.75rem;
-    overflow-x: auto;
-    overflow-y: visible;
+    overflow-x: hidden;
+    overflow-y: hidden;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -188,21 +205,37 @@
       height: 0;
     }
   }
+
+  @media (max-width: 640px) {
+    gap: 0.5rem;
+  }
 }
 
 .service-card {
   position: relative;
   overflow: hidden;
-  border-radius: 22px;
+  border-radius: 16px;
   padding: 1.2rem 1.35rem;
-  border: 1px solid rgba(71, 71, 71, 0.15);
-  background: rgba(19, 19, 19, 0.4);
+  border: 1px solid var(--border-color);
+  background: rgba(17, 24, 41, 0.6);
   transition: border-color 0.4s ease, background 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
+
+  @media (max-width: 900px) {
+    min-width: 100%;
+    width: 100%;
+  }
+
+  @media (max-width: 640px) {
+    border-radius: 12px;
+    padding: 1rem 1.1rem;
+    font-size: 0.9rem;
+  }
 
   @media (min-width: 900px) {
     scroll-snap-align: start;
-    flex: 1 1 55%;
-    min-width: min(100%, 320px);
+    flex: 1 1 48%;
+    min-width: min(100%, 300px);
+    max-width: 100%;
   }
 
   &.active {
@@ -434,6 +467,13 @@
   align-items: center;
   gap: 1rem;
   margin-top: 1rem;
+  flex-wrap: nowrap;
+  overflow: hidden;
+
+  @media (max-width: 640px) {
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+  }
 }
 
 .nav-btn {
@@ -448,6 +488,7 @@
   color: rgba(255, 255, 255, 0.6);
   cursor: pointer;
   transition: all 0.3s ease;
+  flex-shrink: 0;
 
   &:hover:not(:disabled) {
     background: rgba(255, 255, 255, 0.12);
@@ -463,6 +504,16 @@
   svg {
     width: 20px;
     height: 20px;
+  }
+
+  @media (max-width: 640px) {
+    width: 36px;
+    height: 36px;
+
+    svg {
+      width: 18px;
+      height: 18px;
+    }
   }
 }
 

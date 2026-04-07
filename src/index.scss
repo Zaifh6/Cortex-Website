@@ -1,7 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --bg-primary: #0a0e27;
+  --bg-secondary: #111829;
+  --border-color: rgba(255, 255, 255, 0.08);
+  --text-primary: #ffffff;
+  --text-secondary: #b4b4b4;
+  --accent-color: #60a5fa;
+}
 
 // Base styles
 * {
@@ -17,9 +26,9 @@ html {
 }
 
 body {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  background: #131313;
-  color: #ffffff;
+  font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
   overflow-x: hidden;
   line-height: 1.6;
   backface-visibility: hidden;
@@ -43,10 +52,11 @@ main, section {
 .nav-link {
   position: relative;
   font-size: clamp(0.8rem, 0.7vw + 0.1rem, 1rem);
-  color: rgb(180 180 180);
+  color: var(--text-secondary);
   text-decoration: none;
   transition: color 0.2s ease, text-shadow 0.2s ease;
   font-feature-settings: "kern";
+  font-weight: 500;
 }
 
 .nav-link+.nav-link::before {
