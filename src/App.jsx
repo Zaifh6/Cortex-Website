@@ -17,6 +17,25 @@ function App() {
   useEffect(() => {
     // Initialize smooth scroll behavior
     document.documentElement.style.scrollBehavior = 'smooth'
+    // Intercept same-page anchor clicks and apply navbar offset
+    const anchorHandler = (e) => {
+      const a = e.target.closest && e.target.closest('a')
+      if (!a) return
+      const href = a.getAttribute('href')
+      if (!href || !href.startsWith('#')) return
+      const id = href
+      const el = document.querySelector(id)
+      if (!el) return
+      e.preventDefault()
+      const navEl = document.querySelector('nav')
+      const navHeight = navEl ? navEl.offsetHeight : 0
+      const rect = el.getBoundingClientRect()
+      const targetY = window.scrollY + rect.top - navHeight - 8
+      window.scrollTo({ top: targetY, behavior: 'smooth' })
+    }
+    document.addEventListener('click', anchorHandler)
+
+    return () => document.removeEventListener('click', anchorHandler)
   }, [])
 
   return (

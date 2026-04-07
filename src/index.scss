@@ -25,6 +25,18 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Ensure anchored sections account for fixed navbar height */
+section {
+  scroll-margin-top: 4rem; /* 64px default (mobile)
+  */
+}
+
+@media (min-width: 768px) {
+  section {
+    scroll-margin-top: 5rem; /* 80px on larger screens */
+  }
+}
+
 body {
   font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
   background: var(--bg-primary);

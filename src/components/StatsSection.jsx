@@ -31,7 +31,7 @@ const StatsSection = () => {
   ]
 
   return (
-    <div className="absolute bottom-8 right-8 md:bottom-12 md:right-12 flex flex-col md:flex-row gap-3 md:gap-4 pointer-events-auto z-20">
+    <div className="hidden md:flex absolute bottom-8 right-8 md:bottom-12 md:right-12 flex-col md:flex-row gap-3 md:gap-4 pointer-events-auto z-20">
       {stats.map((stat, index) => (
         <motion.div
           key={index}

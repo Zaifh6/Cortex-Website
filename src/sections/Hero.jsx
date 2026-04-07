@@ -79,7 +79,7 @@ const Hero = () => {
 
       {/* ── MAIN CONTENT ── */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-        <div className="relative w-full flex flex-col items-center justify-center min-h-screen gap-8">
+        <div className="relative w-full flex flex-col items-center justify-center gap-8">
 
           {/* Sphere - centered (hidden on small screens to avoid overlap) */}
           <div className="hidden sm:flex items-center justify-center w-full">
@@ -138,7 +138,16 @@ const Hero = () => {
                 whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(255,255,255,0.4)" }}
                 whileTap={{ scale: 0.95 }}
                 className="px-9 py-3.5 bg-white text-black rounded-full font-medium flex items-center gap-2 hover:bg-gray-100 transition-all shadow-lg text-sm"
-                onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => {
+                  const el = document.getElementById('projects')
+                  if (el) {
+                    const navEl = document.querySelector('nav')
+                    const navHeight = navEl ? navEl.offsetHeight : 0
+                    const rect = el.getBoundingClientRect()
+                    const targetY = window.scrollY + rect.top - navHeight - 8
+                    window.scrollTo({ top: targetY, behavior: 'smooth' })
+                  }
+                }}
               >
                 View Work <ArrowRight size={18} />
               </motion.button>
@@ -147,7 +156,16 @@ const Hero = () => {
                 whileHover={{ scale: 1.05, background: "rgba(255,255,255,0.1)" }}
                 whileTap={{ scale: 0.95 }}
                 className="px-9 py-3.5 bg-transparent border border-white/30 text-white rounded-full font-medium transition-all backdrop-blur-sm text-sm"
-                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => {
+                  const el = document.getElementById('contact')
+                  if (el) {
+                    const navEl = document.querySelector('nav')
+                    const navHeight = navEl ? navEl.offsetHeight : 0
+                    const rect = el.getBoundingClientRect()
+                    const targetY = window.scrollY + rect.top - navHeight - 8
+                    window.scrollTo({ top: targetY, behavior: 'smooth' })
+                  }
+                }}
               >
                 Contact Us
               </motion.button>
