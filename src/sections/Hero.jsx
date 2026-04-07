@@ -57,7 +57,7 @@ const Hero = () => {
       </div>
 
       {/* ── BACKGROUND WATERMARK TEXT ── */}
-      <div className="absolute inset-0 flex items-start justify-center pointer-events-none z-0 overflow-hidden pt-20">
+      <div className="hidden sm:flex absolute inset-0 items-start justify-center pointer-events-none z-0 overflow-hidden pt-20">
         <span
           className="select-none whitespace-nowrap font-bold uppercase"
           style={{
@@ -81,8 +81,8 @@ const Hero = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <div className="relative w-full flex flex-col items-center justify-center min-h-screen gap-8">
 
-          {/* Sphere - centered absolutely */}
-          <div className="flex items-center justify-center w-full">
+          {/* Sphere - centered (hidden on small screens to avoid overlap) */}
+          <div className="hidden sm:flex items-center justify-center w-full">
             <div className="relative w-full max-w-[560px] aspect-square"
               style={{
                 maxWidth: 'clamp(200px, 70vw, 560px)'

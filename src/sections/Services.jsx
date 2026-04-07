@@ -113,6 +113,9 @@ const Services = () => {
   }, [])
 
   useEffect(() => {
+    // Only enable scroll-driven sync on large screens (desktop)
+    if (typeof window === 'undefined' || window.innerWidth < 900) return
+
     let raf = 0
     const onScroll = () => {
       syncIndexFromScroll()
@@ -142,10 +145,12 @@ const Services = () => {
 
   const goTo = useCallback((next) => {
     if (next < 0 || next >= services.length) return
-    setActiveIndex(next)
-    setAnimDir(next > activeIndex ? 1 : -1)
+    const prev = typeof prevIdxRef.current === 'number' ? prevIdxRef.current : 0
+    const dir = next > prev ? 1 : -1
+    setAnimDir(dir)
     prevIdxRef.current = next
-  }, [activeIndex])
+    setActiveIndex(next)
+  }, [])
 
   const cardVariants = {
     enter: (dir) => ({ opacity: 0, y: dir > 0 ? 80 : -80 }),
