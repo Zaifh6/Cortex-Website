@@ -2,6 +2,7 @@ import { useRef, useState, useCallback, useEffect } from 'react'
 import { useInView } from 'framer-motion'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Canvas } from '@react-three/fiber'
+import { ArrowLeft, ArrowRight } from 'lucide-react'
 import ServiceParticles from '../components/ServicesParticles'
 import './services.scss'
 
@@ -308,6 +309,32 @@ const Services = () => {
                       onClick={() => goTo(i)}
                     />
                   ))}
+                </div>
+
+                <div className="navigation-buttons">
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => goTo(activeIndex - 1)}
+                    disabled={activeIndex === 0}
+                    className="nav-btn prev"
+                    aria-label="Previous service"
+                    type="button"
+                  >
+                    <ArrowLeft size={20} />
+                  </motion.button>
+                  <span className="service-counter">{activeIndex + 1} / {services.length}</span>
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => goTo(activeIndex + 1)}
+                    disabled={activeIndex === services.length - 1}
+                    className="nav-btn next"
+                    aria-label="Next service"
+                    type="button"
+                  >
+                    <ArrowRight size={20} />
+                  </motion.button>
                 </div>
               </div>
             </div>
