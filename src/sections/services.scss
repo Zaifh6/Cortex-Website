@@ -48,7 +48,7 @@
 // browsers (overflow-y computes to auto). Horizontal clipping comes from body.
 .about-section {
   min-height: auto;
-  padding: 0;
+  padding: 2rem 0;
   overflow: visible;
 }
 
@@ -69,10 +69,10 @@
 .about-inner {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 1rem 2.5rem 0; // Removed bottom padding
+  padding: 1rem 2.5rem 2rem;
 
   @media (max-width: 768px) {
-    padding: 1rem 1.5rem 0;
+    padding: 1rem 1.5rem 2rem;
   }
 }
 
@@ -106,18 +106,17 @@
 .services-scroll-pin {
   --service-step: min(72vh, 600px);
   position: relative;
-  height: calc(var(--services-pin-count, 6) * var(--service-step));
+  height: auto;
+  min-height: auto;
 }
 
 .services-scroll-sticky {
-  position: sticky;
-  top: 0;
-  min-height: 100vh;
-  min-height: 100dvh;
+  position: relative;
+  min-height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-block: 0.5rem 1rem; // Further reduced
+  padding-block: 2rem;
   box-sizing: border-box;
 }
 
@@ -127,7 +126,7 @@
   grid-template-columns: 1fr 1fr;
   gap: 2.5rem 3rem;
   align-items: center;
-  min-height: min(640px, 72vh);
+  min-height: auto;
   margin-top: 0.5rem;
   width: 100%;
 
