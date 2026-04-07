@@ -24,7 +24,12 @@ const Navbar = () => {
   const scrollToSection = (href) => {
     const element = document.querySelector(href)
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
+      // offset scroll by navbar height so section is not hidden underneath
+      const navEl = document.querySelector('nav')
+      const navHeight = navEl ? navEl.offsetHeight : 0
+      const rect = element.getBoundingClientRect()
+      const targetY = window.scrollY + rect.top - navHeight - 8
+      window.scrollTo({ top: targetY, behavior: 'smooth' })
     }
     setIsOpen(false)
   }
@@ -37,7 +42,7 @@ const Navbar = () => {
         }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+        <div className="flex justify-between items-center h-16 md:h-20">
           {/* Logo */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -81,25 +86,27 @@ const Navbar = () => {
           initial={false}
           animate={isOpen ? 'open' : 'closed'}
           variants={{
-            open: { opacity: 1, height: 'auto' },
-            closed: { opacity: 0, height: 0 },
+            open: { opacity: 1, y: 0, pointerEvents: 'auto' },
+            closed: { opacity: 0, y: -8, pointerEvents: 'none' },
           }}
-          className="md:hidden overflow-hidden"
+          className="md:hidden fixed inset-x-0 top-16 md:top-20 z-40"
         >
-          <div className="py-4 space-y-2">
-            {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                onClick={(e) => {
-                  e.preventDefault()
-                  scrollToSection(item.href)
-                }}
-                className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200"
-              >
-                {item.name}
-              </a>
-            ))}
+          <div className="bg-[#0b1224]/95 backdrop-blur-md p-6 md:p-8 h-[calc(100vh-4rem)] md:h-[calc(100vh-5rem)] overflow-auto">
+            <div className="space-y-3">
+              {navItems.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    scrollToSection(item.href)
+                  }}
+                  className="block px-3 py-2 text-gray-200 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-200 text-lg"
+                >
+                  {item.name}
+                </a>
+              ))}
+            </div>
           </div>
         </motion.div>
       </div>

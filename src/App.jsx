@@ -22,7 +22,7 @@ function App() {
   return (
     <div className="min-h-screen bg-[#131313] text-white">
       <Navbar />
-      <main>
+      <main className="pt-16 md:pt-20">
         <Hero />
         <Services />
         <ServicesMarquee />
