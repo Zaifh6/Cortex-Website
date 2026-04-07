@@ -88,21 +88,20 @@ const Services = () => {
 
   const syncIndexFromScroll = useCallback(() => {
     const root = scrollPinRef.current
-    if (!root || root.offsetHeight < 8) return
+    if (!root) return
 
+    // Map the viewport center through the section to an index.
     const rect = root.getBoundingClientRect()
-    const vh = window.innerHeight || 1
-    const scrolledInto = Math.max(0, -rect.top)
-    const maxInto = Math.max(0, root.offsetHeight - vh)
-    const t = Math.min(scrolledInto, maxInto)
+    const sectionTopAbs = window.scrollY + rect.top
+    const sectionHeight = Math.max(1, root.offsetHeight || rect.height || 1)
+    const windowMid = window.scrollY + window.innerHeight / 2
 
-    let idx = 0
-    if (services.length > 1 && maxInto > 0.5) {
-      idx = Math.min(
-        services.length - 1,
-        Math.max(0, Math.floor((t / maxInto) * (services.length - 1) + 1e-6)),
-      )
-    }
+    let progress = 0
+    if (windowMid <= sectionTopAbs) progress = 0
+    else if (windowMid >= sectionTopAbs + sectionHeight) progress = 1
+    else progress = (windowMid - sectionTopAbs) / sectionHeight
+
+    const idx = Math.min(services.length - 1, Math.max(0, Math.floor(progress * services.length)))
 
     if (idx !== prevIdxRef.current) {
       const dir = idx > prevIdxRef.current ? 1 : -1
