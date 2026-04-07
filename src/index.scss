@@ -11,7 +11,9 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -20,6 +22,15 @@ body {
   color: #ffffff;
   overflow-x: hidden;
   line-height: 1.6;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Performance optimization */
+main, section {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  will-change: contents;
 }
 
 /* 👇 Tumhara custom navbar CSS */
@@ -34,7 +45,8 @@ body {
   font-size: clamp(0.8rem, 0.7vw + 0.1rem, 1rem);
   color: rgb(180 180 180);
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+  font-feature-settings: "kern";
 }
 
 .nav-link+.nav-link::before {
@@ -72,6 +84,7 @@ body {
 ::-webkit-scrollbar-thumb {
   background: #333333;
   border-radius: 4px;
+  transition: background 0.2s ease;
 
   &:hover {
     background: #555555;

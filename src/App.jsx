@@ -15,8 +15,8 @@ function App() {
   useLenis()
 
   useEffect(() => {
-    // Initialize smooth scroll behavior
-    document.documentElement.style.scrollBehavior = 'smooth'
+    // Lenis handles smooth scrolling, don't override
+    document.documentElement.style.scrollBehavior = 'auto'
   }, [])
 
   return (

@@ -113,15 +113,14 @@ const Hero = () => {
               className="font-normal text-white leading-[1.2] tracking-tight"
               style={{ fontSize: 'clamp(28px, 4vw, 56px)' }}
             >
-              Building{' '}
+              We Build{' '}
               <span className="italic font-bold" style={{ fontFamily: 'Georgia, serif' }}>
-                Digital
+                Intelligent
               </span>
               <br />
               <span className="italic font-bold" style={{ fontFamily: 'Georgia, serif' }}>
-                Solutions
-              </span>{' '}
-              That Matter
+                Systems
+              </span>
             </h1>
 
             <motion.div
