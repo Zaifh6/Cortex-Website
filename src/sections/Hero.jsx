@@ -59,17 +59,18 @@ const Hero = () => {
       {/* ── BACKGROUND WATERMARK TEXT ── */}
       <div className="absolute inset-0 flex items-start justify-center pointer-events-none z-0 overflow-hidden pt-20">
         <span
-          className="select-none whitespace-nowrap font-normal uppercase"
+          className="select-none whitespace-nowrap font-bold uppercase"
           style={{
-            fontSize: 'clamp(90px, 16vw, 220px)',
-            color: 'rgba(255, 255, 255, 0.06)',
-            WebkitTextStroke: '1px rgba(255, 255, 255, 0.04)',
-            letterSpacing: '0.1em',
+            fontSize: 'clamp(60px, 14vw, 180px)',
+            color: 'rgba(96, 165, 250, 0.15)',
+            WebkitTextStroke: '2px rgba(96, 165, 250, 0.1)',
+            letterSpacing: '0.15em',
             userSelect: 'none',
-            fontFamily: 'system-ui, -apple-system, sans-serif',
-            fontWeight: '400',
-            lineHeight: '1.2',
-            filter: 'blur(0.8px)'
+            fontFamily: "'Plus Jakarta Sans', system-ui, -apple-system, sans-serif",
+            fontWeight: '800',
+            lineHeight: '1.1',
+            filter: 'blur(0.5px)',
+            textShadow: '0 0 40px rgba(96, 165, 250, 0.2), 0 0 80px rgba(96, 165, 250, 0.1)'
           }}
         >
           CORTEX
@@ -78,11 +79,15 @@ const Hero = () => {
 
       {/* ── MAIN CONTENT ── */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-        <div className="relative w-full flex items-center justify-center min-h-screen">
+        <div className="relative w-full flex flex-col items-center justify-center min-h-screen gap-8">
 
           {/* Sphere - centered absolutely */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="relative w-[560px] h-[560px]">
+          <div className="flex items-center justify-center w-full">
+            <div className="relative w-full max-w-[560px] aspect-square"
+              style={{
+                maxWidth: 'clamp(200px, 70vw, 560px)'
+              }}
+            >
               <Canvas
                 ref={canvasRef}
                 camera={{ position: [0, 0, 5], fov: 45 }}
@@ -107,7 +112,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="relative z-10 pointer-events-none max-w-2xl text-center"
+            className="relative z-10 max-w-2xl text-center pointer-events-auto px-4"
           >
             <h1
               className="font-normal text-white leading-[1.2] tracking-tight"

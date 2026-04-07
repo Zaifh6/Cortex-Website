@@ -70,9 +70,15 @@
   max-width: 1400px;
   margin: 0 auto;
   padding: 1rem 2.5rem 2rem;
+  width: 100%;
+  box-sizing: border-box;
 
   @media (max-width: 768px) {
-    padding: 1rem 1.5rem 2rem;
+    padding: 1rem 1.5rem 1.5rem;
+  }
+
+  @media (max-width: 640px) {
+    padding: 0.75rem 1rem 1.25rem;
   }
 }
 
@@ -82,22 +88,48 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin-bottom: 2.25rem;
+  margin-bottom: 1.5rem;
   max-width: 52rem;
   margin-left: auto;
   margin-right: auto;
+  padding: 0 1rem;
+
+  @media (max-width: 640px) {
+    margin-bottom: 1.25rem;
+    padding: 0 0.75rem;
+  }
 }
 
 .about-section .fancy-text {
-  font-size: clamp(3rem, 7vw, 5rem);
+  font-size: clamp(2.5rem, 6vw, 5rem);
   line-height: 0.95;
+
+  @media (max-width: 768px) {
+    font-size: clamp(2rem, 5.5vw, 3.5rem);
+  }
+
+  @media (max-width: 640px) {
+    font-size: clamp(1.75rem, 5vw, 2.5rem);
+  }
 }
 
 .heading-sub {
   font-size: 1rem;
   color: rgba(255, 255, 255, 0.42);
   max-width: 40rem;
-  margin: 1.25rem auto 0;
+  margin: 0.75rem auto 0;
+  line-height: 1.5;
+
+  @media (max-width: 768px) {
+    font-size: 0.95rem;
+    margin: 0.6rem auto 0;
+  }
+
+  @media (max-width: 640px) {
+    font-size: 0.9rem;
+    margin: 0.5rem auto 0;
+  }
+}
   line-height: 1.65;
   text-align: center;
 }
@@ -178,6 +210,13 @@
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+
+  @media (max-width: 640px) {
+    gap: 0.5rem;
+  }
 }
 
 // ── Card stack (carousel-style: row on desktop like reference) ───────
@@ -368,12 +407,25 @@
   margin-bottom: 0.5rem;
   line-height: 1.25;
   font-family: 'Space Grotesk', sans-serif;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+
+  @media (max-width: 640px) {
+    font-size: 1rem;
+  }
 
   &.muted {
     font-size: 1rem;
     font-weight: 500;
     color: rgba(255, 255, 255, 0.3);
     margin-bottom: 0;
+
+    @media (max-width: 640px) {
+      font-size: 0.95rem;
+    }
   }
 }
 
@@ -382,7 +434,13 @@
   color: #c6c6c6;
   line-height: 1.75;
   margin-bottom: 1.5rem;
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Plus Jakarta Sans', 'Manrope', sans-serif;
+
+  @media (max-width: 640px) {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
 }
 
 .card-footer {
@@ -390,6 +448,11 @@
   gap: 2.5rem;
   border-top: 1px solid rgba(255, 255, 255, 0.07);
   padding-top: 1.25rem;
+
+  @media (max-width: 640px) {
+    gap: 1.5rem;
+    padding-top: 1rem;
+  }
 }
 
 .footer-col {
@@ -520,7 +583,14 @@
 .service-counter {
   font-size: 0.875rem;
   color: rgba(255, 255, 255, 0.4);
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Plus Jakarta Sans', 'Manrope', sans-serif;
   width: 50px;
   text-align: center;
+  white-space: nowrap;
+  flex-shrink: 0;
+
+  @media (max-width: 640px) {
+    font-size: 0.8rem;
+    width: 45px;
+  }
 }

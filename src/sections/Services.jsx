@@ -142,23 +142,10 @@ const Services = () => {
 
   const goTo = useCallback((next) => {
     if (next < 0 || next >= services.length) return
-    const root = scrollPinRef.current
-    if (!root || root.offsetHeight < 8) return
-
-    const vh = window.innerHeight || 1
-    const maxInto = Math.max(0, root.offsetHeight - vh)
-    const t = services.length > 1 ? (next / (services.length - 1)) * maxInto : 0
-    const pinDocTop = root.getBoundingClientRect().top + getDocScrollY()
-    const targetY = pinDocTop + t
-
-    const lenis = window.__lenis
-    if (lenis && typeof lenis.scrollTo === 'function') {
-      lenis.scrollTo(targetY, { immediate: true })
-    } else {
-      window.scrollTo(0, targetY)
-    }
-    queueMicrotask(() => syncIndexFromScroll())
-  }, [syncIndexFromScroll])
+    setActiveIndex(next)
+    setAnimDir(next > activeIndex ? 1 : -1)
+    prevIdxRef.current = next
+  }, [activeIndex])
 
   const cardVariants = {
     enter: (dir) => ({ opacity: 0, y: dir > 0 ? 80 : -80 }),
